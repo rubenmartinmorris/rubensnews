@@ -11,8 +11,8 @@ function App() {
         <Header />
         <Nav />
         <Routes>
-          <Route path='/' element={<DisplayArticles />} />
-          <Route path='/coding' element={<DisplayArticles page='coding' />} />
+          <Route path='/' element={<DisplayArticles page='home' />} />
+          <Route path='/topics/:topic' element={<DisplayArticles page='' />} />
         </Routes>
       </div>
     </BrowserRouter>

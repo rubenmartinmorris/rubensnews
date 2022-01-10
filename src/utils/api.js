@@ -8,8 +8,15 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = (page) => {
-  return myApi.get('/api/articles/').then((res) => {
+export const getArticles = (topic) => {
+  console.log('getArticles called!', topic);
+
+  if (topic === undefined) {
+    return myApi.get('/api/articles/').then((res) => {
+      return res.data;
+    });
+  }
+  return myApi.get(`/api/articles?topic=${topic}`).then((res) => {
     return res.data;
   });
 };

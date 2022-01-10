@@ -17,8 +17,8 @@ export const Nav = () => {
       {topicsState.map((topic) => {
         return (
           <>
-            <Link key={topic.slug} to={`/${topic.slug}`}>
-              <li>{topic.slug}</li>
+            <Link to={`topics/${topic.slug}`}>
+              <li key={topic.slug}>{topic.slug}</li>
             </Link>
           </>
         );
