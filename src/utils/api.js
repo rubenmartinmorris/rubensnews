@@ -7,3 +7,9 @@ export const getTopics = () => {
     return res.data;
   });
 };
+
+export const getArticles = (page) => {
+  return myApi.get('/api/articles/').then((res) => {
+    return res.data;
+  });
+};
