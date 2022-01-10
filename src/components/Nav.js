@@ -6,8 +6,6 @@ export const Nav = () => {
   const [topicsState, setTopicsState] = useState([]);
   useEffect(() => {
     getTopics().then(({ topics }) => {
-      console.log(topics);
-
       setTopicsState(topics);
     });
   }, []);

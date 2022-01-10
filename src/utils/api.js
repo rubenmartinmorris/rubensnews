@@ -8,15 +8,18 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = (topic) => {
-  console.log('getArticles called!', topic);
-
-  if (topic === undefined) {
-    return myApi.get('/api/articles/').then((res) => {
-      return res.data;
-    });
+export const getArticles = (topic, sort) => {
+  console.log('getArticles called!', topic, sort);
+  let str = '/api/articles?';
+  if (topic) {
+    str += `&topic=${topic}`;
   }
-  return myApi.get(`/api/articles?topic=${topic}`).then((res) => {
+  if (sort) {
+    str += `&sort_by=${sort[0]}&order=${sort[1]}`;
+  }
+  console.log(str);
+
+  return myApi.get(str).then((res) => {
     return res.data;
   });
 };

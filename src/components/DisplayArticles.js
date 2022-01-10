@@ -2,17 +2,45 @@ import { React, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getArticles } from '../utils/api';
 
-export const DisplayArticles = ({ page }) => {
+export const DisplayArticles = () => {
   const paramsTopic = useParams().topic;
   const [articles, setArticles] = useState([]);
+  const [sort, setSort] = useState(['votes', 'asc']);
 
   useEffect(() => {
-    getArticles(paramsTopic).then(({ articles }) => {
+    getArticles(paramsTopic, sort).then(({ articles }) => {
       setArticles(articles);
     });
-  }, [paramsTopic]);
+  }, [paramsTopic, sort]);
   return (
     <section>
+      <form action=''>
+        <label htmlFor='sort'>sort articles by:</label>
+        <select
+          name='sort'
+          id='sort'
+          onChange={(event) => {
+            const newSort = [event.target.value, sort[1]];
+            setSort(newSort);
+          }}
+        >
+          <option value='created_at'>created_at</option>
+          <option value='comment_count'>comment_count</option>
+          <option value='votes'>votes</option>
+        </select>
+        <label htmlFor='direction'>direction:</label>
+        <select
+          name='direction'
+          id='direction'
+          onChange={(event) => {
+            const newSort = [sort[0], event.target.value];
+            setSort(newSort);
+          }}
+        >
+          <option value='asc'>asc</option>
+          <option value='desc'>desc</option>
+        </select>
+      </form>
       {articles.map((article) => {
         return (
           <div key={article.article_id}>
