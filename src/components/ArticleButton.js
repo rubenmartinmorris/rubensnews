@@ -13,7 +13,7 @@ export const ArticleButton = ({ article }) => {
           upVote(article.article_id).then(({ votes }) => {});
         }}
       >
-        Votes:{like}
+        Up Vote:{like}
       </button>
     </>
   );
