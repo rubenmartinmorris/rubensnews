@@ -55,3 +55,8 @@ export const submitComment = (id, commentText) => {
       return res.data.comment;
     });
 };
+export const getUsers = () => {
+  return myApi.get('/api/users/').then((res) => {
+    return res.data.users;
+  });
+};

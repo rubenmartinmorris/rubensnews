@@ -6,6 +6,8 @@ import { Comments } from './Comments';
 import { AddComment } from './AddComment';
 
 export const DisplayArticle = () => {
+  const [comments, setComments] = useState([]);
+
   const [article, setArticle] = useState([{}]);
   const { article_id } = useParams();
   const [addComment, setAddComment] = useState(false);
@@ -42,10 +44,15 @@ export const DisplayArticle = () => {
         </button>
       </div>
       {addComment && (
-        <AddComment id={article_id} setAddComment={setAddComment} />
+        <AddComment
+          id={article_id}
+          setAddComment={setAddComment}
+          comments={comments}
+          setComments={setComments}
+        />
       )}
 
-      <Comments id={article_id} />
+      <Comments id={article_id} comments={comments} setComments={setComments} />
     </section>
   );
 };

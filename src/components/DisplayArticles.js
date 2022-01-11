@@ -45,7 +45,7 @@ export const DisplayArticles = () => {
       {articles.map((article) => {
         return (
           <div>
-            <Link to={`./articles/${article.article_id}`}>
+            <Link to={`/articles/${article.article_id}`}>
               <div className='article author'>{article.author}</div>
               <div className='article id'>ID = {article.article_id}</div>
               <div className='article-topic'>{article.topic}</div>

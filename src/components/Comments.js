@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { getComments } from '../utils/api';
-export const Comments = ({ id }) => {
-  const [comments, setComments] = useState([]);
+export const Comments = ({ id, setComments, comments }) => {
   useEffect(() => {
     getComments(id).then(({ comments }) => {
       setComments(comments);
-      console.log(comments);
     });
   }, []);
   return (
