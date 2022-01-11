@@ -60,8 +60,14 @@ export const getUsers = () => {
 
 export const deleteComment = (id) => {
   return myApi.delete(`/api/comments/${id}`).then((res) => {
-    console.log('comment deleted', id, res);
-
     return res;
   });
+};
+
+export const voteComment = (id, quantity) => {
+  return myApi
+    .patch(`/api/comments/${id}`, { inc_votes: quantity })
+    .then((res) => {
+      return res;
+    });
 };
