@@ -9,7 +9,6 @@ export const getTopics = () => {
 };
 
 export const getArticles = (topic, sort) => {
-  console.log('getArticles called!', topic, sort);
   let str = '/api/articles?';
   if (topic) {
     str += `&topic=${topic}`;
@@ -17,7 +16,6 @@ export const getArticles = (topic, sort) => {
   if (sort) {
     str += `&sort_by=${sort[0]}&order=${sort[1]}`;
   }
-  console.log(str);
 
   return myApi.get(str).then((res) => {
     return res.data;
@@ -25,14 +23,12 @@ export const getArticles = (topic, sort) => {
 };
 
 export const getArticle = (id) => {
-  console.log('in getArticle id-->', id);
   return myApi.get(`/api/articles/${id}`).then((res) => {
     return res.data;
   });
 };
 
 export const upVote = (id) => {
-  console.log('upVote called ', id);
   return myApi.patch(`/api/articles/${id}`, { inc_votes: 1 }).then((res) => {
     return res.data.article;
   });
@@ -44,12 +40,13 @@ export const getComments = (id) => {
   });
 };
 
-export const submitComment = (id, commentText) => {
-  const username = 'tickle122';
+export const submitComment = (id, commentText, user) => {
+  console.log(user.username, '<---user');
+
   return myApi
     .post(`/api/articles/${id}/comments`, {
       body: commentText,
-      username: username,
+      username: user.username,
     })
     .then((res) => {
       return res.data.comment;
@@ -58,5 +55,13 @@ export const submitComment = (id, commentText) => {
 export const getUsers = () => {
   return myApi.get('/api/users/').then((res) => {
     return res.data.users;
+  });
+};
+
+export const deleteComment = (id) => {
+  return myApi.delete(`/api/comments/${id}`).then((res) => {
+    console.log('comment deleted', id, res);
+
+    return res;
   });
 };

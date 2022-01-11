@@ -10,10 +10,7 @@ export const ArticleButton = ({ article }) => {
         onClick={(event) => {
           const newLike = like + 1;
           setLike(newLike);
-          upVote(article.article_id).then(({ votes }) => {
-            console.log(votes, '<---res from upVote');
-            console.log(article.votes, 'article.votes');
-          });
+          upVote(article.article_id).then(({ votes }) => {});
         }}
       >
         Votes:{like}

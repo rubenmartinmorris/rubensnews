@@ -37,7 +37,6 @@ export const DisplayArticle = () => {
         <button
           onClick={() => {
             setAddComment(!addComment);
-            console.log(addComment);
           }}
         >
           {addComment ? 'Back' : 'Add Comment'}
