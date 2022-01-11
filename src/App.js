@@ -3,6 +3,7 @@ import { Nav } from './components/Nav';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { DisplayArticles } from './components/DisplayArticles';
 import { Header } from './components/Header';
+import { DisplayArticle } from './components/DisplayArticle';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Nav />
         <Routes>
           <Route path='/' element={<DisplayArticles page='home' />} />
-          <Route path='/topics/:topic' element={<DisplayArticles page='' />} />
+          <Route path='/topics/:topic' element={<DisplayArticles />} />
+          <Route path='/articles/:article_id' element={<DisplayArticle />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -23,3 +23,35 @@ export const getArticles = (topic, sort) => {
     return res.data;
   });
 };
+
+export const getArticle = (id) => {
+  console.log('in getArticle id-->', id);
+  return myApi.get(`/api/articles/${id}`).then((res) => {
+    return res.data;
+  });
+};
+
+export const upVote = (id) => {
+  console.log('upVote called ', id);
+  return myApi.patch(`/api/articles/${id}`, { inc_votes: 1 }).then((res) => {
+    return res.data.article;
+  });
+};
+
+export const getComments = (id) => {
+  return myApi.get(`/api/articles/${id}/comments`).then((res) => {
+    return res.data;
+  });
+};
+
+export const submitComment = (id, commentText) => {
+  const username = 'tickle122';
+  return myApi
+    .post(`/api/articles/${id}/comments`, {
+      body: commentText,
+      username: username,
+    })
+    .then((res) => {
+      return res.data.comment;
+    });
+};

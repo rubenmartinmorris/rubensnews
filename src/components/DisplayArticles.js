@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getArticles } from '../utils/api';
+import { ArticleButton } from './ArticleButton';
 
 export const DisplayArticles = () => {
   const paramsTopic = useParams().topic;
@@ -43,12 +44,16 @@ export const DisplayArticles = () => {
       </form>
       {articles.map((article) => {
         return (
-          <div key={article.article_id}>
-            <div className='article author'>{article.author}</div>
-            <div className='article-topic'>{article.topic}</div>
-            <div className='article-title'>{article.article_id}</div>
-            <div className='article-body'>{article.body}</div>
-            <button>Votes:{article.votes}</button>
+          <div>
+            <Link to={`./articles/${article.article_id}`}>
+              <div className='article author'>{article.author}</div>
+              <div className='article id'>ID = {article.article_id}</div>
+              <div className='article-topic'>{article.topic}</div>
+              <div className='article-title'>{article.article_id}</div>
+              <div className='article-body'>{article.body}</div>
+              <div className='article-votes'>{article.votes}</div>
+            </Link>
+            <ArticleButton article={article}></ArticleButton>
           </div>
         );
       })}
