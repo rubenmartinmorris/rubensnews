@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { submitComment } from '../utils/api';
 import { UserContext } from '../contexts/UserContext';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 export const AddComment = ({ id, setAddComment, comments, setComments }) => {
   const { user } = useContext(UserContext);
@@ -9,7 +9,7 @@ export const AddComment = ({ id, setAddComment, comments, setComments }) => {
   console.log(user.username);
 
   return (
-    <form
+    <Form
       onSubmit={(event) => {
         event.preventDefault();
         if (event.target.comment.value === '') {
@@ -36,17 +36,19 @@ export const AddComment = ({ id, setAddComment, comments, setComments }) => {
         setComments(newComments);
       }}
     >
-      <input
-        autoFocus
-        type='text'
-        name='comment'
-        id='comment'
-        value={commentText}
-        onChange={(event) => {
-          setCommentText(event.target.value);
-        }}
-      />
-      <Button>Post Comment</Button>
-    </form>
+      <Form.Group>
+        <Form.Control
+          autoFocus
+          type='text'
+          name='comment'
+          id='comment'
+          value={commentText}
+          onChange={(event) => {
+            setCommentText(event.target.value);
+          }}
+        />
+        <Button type='submit'>Post Comment</Button>
+      </Form.Group>
+    </Form>
   );
 };

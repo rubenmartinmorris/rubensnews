@@ -3,6 +3,8 @@ import { Button } from 'react-bootstrap';
 export const DeleteArticleButton = ({ article, articles, setArticles }) => {
   return (
     <Button
+      id='btn'
+      className='ms-3 mt-3'
       onClick={() => {
         deleteArticleButton(article.article_id);
         const newArticles = articles.filter((filterdArticle) => {

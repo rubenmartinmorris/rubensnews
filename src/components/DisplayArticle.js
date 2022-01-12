@@ -25,7 +25,7 @@ export const DisplayArticle = () => {
           navigate(-1);
         }}
       >
-        exit
+        Back
       </Button>
       <div key={article.article_id}>
         <div>Id {article.article_id}</div>
@@ -53,6 +53,14 @@ export const DisplayArticle = () => {
       )}
 
       <Comments id={article_id} comments={comments} setComments={setComments} />
+      <Button
+        className='mt-3 ms-3'
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Back
+      </Button>
     </section>
   );
 };

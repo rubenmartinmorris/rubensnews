@@ -5,7 +5,7 @@ import { ArticleButton } from './ArticleButton';
 import { AddArticle } from './AddArticle';
 import { DeleteArticleButton } from './DeleteArticleButton';
 import { UserContext } from '../contexts/UserContext';
-import { Button } from 'react-bootstrap';
+import { Button, Card, Form } from 'react-bootstrap';
 
 export const DisplayArticles = () => {
   const { user } = useContext(UserContext);
@@ -20,37 +20,40 @@ export const DisplayArticles = () => {
       setArticles(articles);
     });
   }, [paramsTopic, sort]);
-  console.log(user);
 
   return (
     <section>
-      <form action=''>
-        <label htmlFor='sort'>sort articles by:</label>
-        <select
-          name='sort'
-          id='sort'
-          onChange={(event) => {
-            const newSort = [event.target.value, sort[1]];
-            setSort(newSort);
-          }}
-        >
-          <option value='created_at'>created_at</option>
-          <option value='comment_count'>comment_count</option>
-          <option value='votes'>votes</option>
-        </select>
-        <label htmlFor='direction'>direction:</label>
-        <select
-          name='direction'
-          id='direction'
-          onChange={(event) => {
-            const newSort = [sort[0], event.target.value];
-            setSort(newSort);
-          }}
-        >
-          <option value='asc'>asc</option>
-          <option value='desc'>desc</option>
-        </select>
-      </form>
+      <Form>
+        <Form.Group>
+          <Form.Label htmlFor='sort'>sort articles by:</Form.Label>
+          <Form.Select
+            name='sort'
+            id='sort'
+            onChange={(event) => {
+              const newSort = [event.target.value, sort[1]];
+              setSort(newSort);
+            }}
+          >
+            <option value='created_at'>created_at</option>
+            <option value='comment_count'>comment_count</option>
+            <option value='votes'>votes</option>
+          </Form.Select>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor='direction'>direction:</Form.Label>
+          <Form.Select
+            name='direction'
+            id='direction'
+            onChange={(event) => {
+              const newSort = [sort[0], event.target.value];
+              setSort(newSort);
+            }}
+          >
+            <option value='asc'>asc</option>
+            <option value='desc'>desc</option>
+          </Form.Select>
+        </Form.Group>
+      </Form>
       <Button
         onClick={() => {
           setToggleNewArticle(!toggleNewArticle);
@@ -60,30 +63,42 @@ export const DisplayArticles = () => {
       </Button>
       {toggleNewArticle ? (
         <>
-          <AddArticle articles={articles} setArticles={setArticles} />
+          <AddArticle
+            articles={articles}
+            setArticles={setArticles}
+            setToggleNewArticle={setToggleNewArticle}
+          />
         </>
       ) : null}
       <div className='create-article'></div>
       {articles.map((article) => {
         return (
-          <div>
-            <Link to={`/articles/${article.article_id}`}>
-              <div className='article author'>{article.author}</div>
-              <div className='article id'>ID = {article.article_id}</div>
-              <div className='article-topic'>{article.topic}</div>
-              <div className='article-title'>{article.title}</div>
-              <div className='article-body'>{article.body}</div>
-              <div className='article-votes'>{article.votes}</div>
-            </Link>
-            <ArticleButton article={article}></ArticleButton>
-            {user.username === article.author ? (
-              <DeleteArticleButton
-                article={article}
-                articles={articles}
-                setArticles={setArticles}
-              />
-            ) : null}
-          </div>
+          <Card className='mt-2'>
+            <Card.Header>
+              <Link className='Link' to={`/articles/${article.article_id}`}>
+                <Card.Title>{article.title}</Card.Title>
+                <Card.Text>By: {article.author}</Card.Text>
+              </Link>
+            </Card.Header>
+            <Card.Body>
+              <Link className='Link' to={`/articles/${article.article_id}`}>
+                <div className='article-topic'>Topic: {article.topic}</div>
+                <Card.Text className='article-body'>
+                  <div>{article.body}</div>
+                </Card.Text>
+              </Link>
+
+              <ArticleButton article={article}></ArticleButton>
+              <Button className='mt-3 ms-3'>View Comments</Button>
+              {user.username === article.author ? (
+                <DeleteArticleButton
+                  article={article}
+                  articles={articles}
+                  setArticles={setArticles}
+                />
+              ) : null}
+            </Card.Body>
+          </Card>
         );
       })}
     </section>

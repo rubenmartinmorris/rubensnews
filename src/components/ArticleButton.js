@@ -8,6 +8,7 @@ export const ArticleButton = ({ article }) => {
   return (
     <>
       <Button
+        className='mt-3 '
         onClick={(event) => {
           const newLike = like + 1;
           setLike(newLike);
