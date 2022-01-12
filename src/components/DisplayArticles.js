@@ -1,10 +1,14 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getArticles } from '../utils/api';
 import { ArticleButton } from './ArticleButton';
 import { AddArticle } from './AddArticle';
+import { DeleteArticleButton } from './DeleteArticleButton';
+import { UserContext } from '../contexts/UserContext';
 
 export const DisplayArticles = () => {
+  const { user } = useContext(UserContext);
+
   const paramsTopic = useParams().topic;
   const [articles, setArticles] = useState([]);
   const [sort, setSort] = useState(['votes', 'asc']);
@@ -15,6 +19,8 @@ export const DisplayArticles = () => {
       setArticles(articles);
     });
   }, [paramsTopic, sort]);
+  console.log(user);
+
   return (
     <section>
       <form action=''>
@@ -53,7 +59,7 @@ export const DisplayArticles = () => {
       </button>
       {toggleNewArticle ? (
         <>
-          <AddArticle />
+          <AddArticle articles={articles} setArticles={setArticles} />
         </>
       ) : null}
       <div className='create-article'></div>
@@ -64,11 +70,18 @@ export const DisplayArticles = () => {
               <div className='article author'>{article.author}</div>
               <div className='article id'>ID = {article.article_id}</div>
               <div className='article-topic'>{article.topic}</div>
-              <div className='article-title'>{article.article_id}</div>
+              <div className='article-title'>{article.title}</div>
               <div className='article-body'>{article.body}</div>
               <div className='article-votes'>{article.votes}</div>
             </Link>
             <ArticleButton article={article}></ArticleButton>
+            {user.username === article.author ? (
+              <DeleteArticleButton
+                article={article}
+                articles={articles}
+                setArticles={setArticles}
+              />
+            ) : null}
           </div>
         );
       })}

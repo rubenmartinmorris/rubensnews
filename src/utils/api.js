@@ -71,3 +71,19 @@ export const voteComment = (id, quantity) => {
       return res;
     });
 };
+
+export const submitArticle = (title, body, topic, author) => {
+  //console.log('in submitArticle', title, body, topic, author);
+  return myApi
+    .post(`/api/articles`, { title, body, topic, author })
+    .then((res) => {
+      return res.data;
+    });
+};
+
+export const deleteArticleButton = (id) => {
+  console.log('in deleteArticleButton', id);
+  return myApi.delete(`/api/articles/${id}`).then((res) => {
+    console.log(res);
+  });
+};
