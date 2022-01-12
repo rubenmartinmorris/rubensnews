@@ -69,7 +69,9 @@ export const AddArticle = ({ articles, setArticles, setToggleNewArticle }) => {
           <option value='cooking'>cooking</option>
         </Form.Select>
       </Form.Group>
-      <Button type='submit'>Create Article</Button>
+      <Button type='submit' className='m-3'>
+        Post Now!
+      </Button>
     </Form>
   );
 };

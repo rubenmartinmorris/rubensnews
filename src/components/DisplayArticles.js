@@ -5,7 +5,7 @@ import { ArticleButton } from './ArticleButton';
 import { AddArticle } from './AddArticle';
 import { DeleteArticleButton } from './DeleteArticleButton';
 import { UserContext } from '../contexts/UserContext';
-import { Button, Card, Form } from 'react-bootstrap';
+import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 
 export const DisplayArticles = () => {
   const { user } = useContext(UserContext);
@@ -24,37 +24,45 @@ export const DisplayArticles = () => {
   return (
     <section>
       <Form>
-        <Form.Group>
-          <Form.Label htmlFor='sort'>sort articles by:</Form.Label>
-          <Form.Select
-            name='sort'
-            id='sort'
-            onChange={(event) => {
-              const newSort = [event.target.value, sort[1]];
-              setSort(newSort);
-            }}
-          >
-            <option value='created_at'>created_at</option>
-            <option value='comment_count'>comment_count</option>
-            <option value='votes'>votes</option>
-          </Form.Select>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label htmlFor='direction'>direction:</Form.Label>
-          <Form.Select
-            name='direction'
-            id='direction'
-            onChange={(event) => {
-              const newSort = [sort[0], event.target.value];
-              setSort(newSort);
-            }}
-          >
-            <option value='asc'>asc</option>
-            <option value='desc'>desc</option>
-          </Form.Select>
-        </Form.Group>
+        <Row>
+          <Col>
+            <Form.Group>
+              <Form.Label htmlFor='sort'>sort articles by:</Form.Label>
+              <Form.Select
+                name='sort'
+                id='sort'
+                onChange={(event) => {
+                  const newSort = [event.target.value, sort[1]];
+                  setSort(newSort);
+                }}
+              >
+                <option value='created_at'>created_at</option>
+                <option value='comment_count'>comment_count</option>
+                <option value='votes'>votes</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group>
+              <Form.Label htmlFor='direction'>direction:</Form.Label>
+              <Form.Select
+                name='direction'
+                id='direction'
+                onChange={(event) => {
+                  const newSort = [sort[0], event.target.value];
+                  setSort(newSort);
+                }}
+              >
+                <option value='asc'>asc</option>
+                <option value='desc'>desc</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
+        </Row>
       </Form>
+
       <Button
+        className='m-3'
         onClick={() => {
           setToggleNewArticle(!toggleNewArticle);
         }}

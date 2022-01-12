@@ -1,5 +1,5 @@
 import './App.css';
-import { Nav } from './components/Nav';
+import { NavBar } from './components/NavBar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { DisplayArticles } from './components/DisplayArticles';
 import { Header } from './components/Header';
@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <div className='App'>
           <Header />
-          <Nav />
+          <NavBar />
           <Routes>
             <Route path='/' element={<DisplayArticles page='home' />} />
             <Route path='/topics/:topic' element={<DisplayArticles />} />

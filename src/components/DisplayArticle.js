@@ -21,6 +21,7 @@ export const DisplayArticle = () => {
   return (
     <section>
       <Button
+        className='m-3'
         onClick={() => {
           navigate(-1);
         }}
