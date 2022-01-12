@@ -2,11 +2,13 @@ import { React, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getArticles } from '../utils/api';
 import { ArticleButton } from './ArticleButton';
+import { AddArticle } from './AddArticle';
 
 export const DisplayArticles = () => {
   const paramsTopic = useParams().topic;
   const [articles, setArticles] = useState([]);
   const [sort, setSort] = useState(['votes', 'asc']);
+  const [toggleNewArticle, setToggleNewArticle] = useState(false);
 
   useEffect(() => {
     getArticles(paramsTopic, sort).then(({ articles }) => {
@@ -42,6 +44,19 @@ export const DisplayArticles = () => {
           <option value='desc'>desc</option>
         </select>
       </form>
+      <button
+        onClick={() => {
+          setToggleNewArticle(!toggleNewArticle);
+        }}
+      >
+        {!toggleNewArticle ? 'Create Article ' : 'Forget it!'}
+      </button>
+      {toggleNewArticle ? (
+        <>
+          <AddArticle />
+        </>
+      ) : null}
+      <div className='create-article'></div>
       {articles.map((article) => {
         return (
           <div>
