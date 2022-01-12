@@ -35,14 +35,3 @@ As a user, I should be able to...
     view a list of all articles written by any specific user.
     post a new article to an existing topic.
     delete my own articles.
-
-article: {
-article_id: Number,
-//title: String,
-//body: String,
-//topic: String,
-//author: String,
-votes: Number,
-created_at: String,
-comment_count: String
-}

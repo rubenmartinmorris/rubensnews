@@ -24,7 +24,7 @@ export const Header = () => {
           type='text'
           name='search'
           id='search'
-          placeholder='search Topics'
+          placeholder='search by Topics or Author'
         />
       </form>
       <form action=''>
