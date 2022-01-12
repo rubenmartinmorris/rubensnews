@@ -5,6 +5,7 @@ import { ArticleButton } from './ArticleButton';
 import { AddArticle } from './AddArticle';
 import { DeleteArticleButton } from './DeleteArticleButton';
 import { UserContext } from '../contexts/UserContext';
+import { Button } from 'react-bootstrap';
 
 export const DisplayArticles = () => {
   const { user } = useContext(UserContext);
@@ -50,13 +51,13 @@ export const DisplayArticles = () => {
           <option value='desc'>desc</option>
         </select>
       </form>
-      <button
+      <Button
         onClick={() => {
           setToggleNewArticle(!toggleNewArticle);
         }}
       >
         {!toggleNewArticle ? 'Create Article ' : 'Forget it!'}
-      </button>
+      </Button>
       {toggleNewArticle ? (
         <>
           <AddArticle articles={articles} setArticles={setArticles} />

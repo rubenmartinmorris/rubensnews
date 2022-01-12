@@ -4,6 +4,7 @@ import { getArticle } from '../utils/api';
 import { ArticleButton } from './ArticleButton';
 import { Comments } from './Comments';
 import { AddComment } from './AddComment';
+import { Button } from 'react-bootstrap';
 
 export const DisplayArticle = () => {
   const [comments, setComments] = useState([]);
@@ -19,13 +20,13 @@ export const DisplayArticle = () => {
   }, []);
   return (
     <section>
-      <button
+      <Button
         onClick={() => {
           navigate(-1);
         }}
       >
         exit
-      </button>
+      </Button>
       <div key={article.article_id}>
         <div>Id {article.article_id}</div>
         <div>Author {article.author}</div>
@@ -34,13 +35,13 @@ export const DisplayArticle = () => {
         <div>Votes {article.votes}</div>
         <div>Created at {article.created_at}</div>
         <ArticleButton article={article}></ArticleButton>
-        <button
+        <Button
           onClick={() => {
             setAddComment(!addComment);
           }}
         >
           {addComment ? 'Back' : 'Add Comment'}
-        </button>
+        </Button>
       </div>
       {addComment && (
         <AddComment

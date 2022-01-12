@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { submitComment } from '../utils/api';
-
 import { UserContext } from '../contexts/UserContext';
+import { Button } from 'react-bootstrap';
 
 export const AddComment = ({ id, setAddComment, comments, setComments }) => {
   const { user } = useContext(UserContext);
@@ -46,7 +46,7 @@ export const AddComment = ({ id, setAddComment, comments, setComments }) => {
           setCommentText(event.target.value);
         }}
       />
-      <button>Post Comment</button>
+      <Button>Post Comment</Button>
     </form>
   );
 };

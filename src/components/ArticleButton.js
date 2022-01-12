@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { upVote } from '../utils/api';
+import { Button } from 'react-bootstrap';
 
 export const ArticleButton = ({ article }) => {
   const [like, setLike] = useState(article.votes);
   return (
     <>
-      <button
+      <Button
         onClick={(event) => {
           const newLike = like + 1;
           setLike(newLike);
@@ -14,7 +15,7 @@ export const ArticleButton = ({ article }) => {
         }}
       >
         Up Vote:{like}
-      </button>
+      </Button>
     </>
   );
 };

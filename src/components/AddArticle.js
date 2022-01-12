@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { submitArticle } from '../utils/api';
 import { UserContext } from '../contexts/UserContext';
-
+import { Button } from 'react-bootstrap';
 export const AddArticle = ({ articles, setArticles }) => {
   const { user } = useContext(UserContext);
 
@@ -65,7 +65,7 @@ export const AddArticle = ({ articles, setArticles }) => {
         <option value='football'>football</option>
         <option value='cooking'>cooking</option>
       </select>
-      <input type='submit' value='Create Article' />
+      <Button type='submit'>Create Article</Button>
     </form>
   );
 };

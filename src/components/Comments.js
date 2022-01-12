@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { getComments, deleteComment } from '../utils/api';
 import { UserContext } from '../contexts/UserContext';
 import { CommentsButton } from './CommentsButton';
+import { Button } from 'react-bootstrap';
 
 export const Comments = ({ id, setComments, comments }) => {
   useEffect(() => {
@@ -20,7 +21,7 @@ export const Comments = ({ id, setComments, comments }) => {
             <p> {comment.body}</p>
             <CommentsButton comment={comment} />
             {comment.author === user.username ? (
-              <button
+              <Button
                 onClick={(event) => {
                   deleteComment(comment.comment_id);
                   let newComments = comments.map((comment) => comment);
@@ -32,7 +33,7 @@ export const Comments = ({ id, setComments, comments }) => {
                 }}
               >
                 Delete My Comment
-              </button>
+              </Button>
             ) : null}
           </div>
         );

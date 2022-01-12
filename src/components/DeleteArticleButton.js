@@ -1,7 +1,8 @@
 import { deleteArticleButton } from '../utils/api';
+import { Button } from 'react-bootstrap';
 export const DeleteArticleButton = ({ article, articles, setArticles }) => {
   return (
-    <button
+    <Button
       onClick={() => {
         deleteArticleButton(article.article_id);
         const newArticles = articles.filter((filterdArticle) => {
@@ -13,6 +14,6 @@ export const DeleteArticleButton = ({ article, articles, setArticles }) => {
       }}
     >
       Delete my Article
-    </button>
+    </Button>
   );
 };
