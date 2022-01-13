@@ -18,22 +18,26 @@ export const AddComment = ({ id, setAddComment, comments, setComments }) => {
         }
 
         submitComment(id, commentText, user).then((res) => {
+          console.log(res, 'res<-----');
+
           const newComments = comments.map((res) => res);
-          const commentToAdd = {
-            body: res.body,
-            author: res.author,
-            comment_id: res.comment_id,
-          };
-          newComments.unshift(commentToAdd);
+          console.log(newComments, '1');
+
+          newComments.unshift(res);
+          console.log(newComments, '2');
+
           setComments(newComments);
         });
-        setCommentText('');
-        setAddComment(false);
-        const newComments = comments.map((comment) => comment);
-        const commentToAdd = { body: commentText, author: user.username };
-        newComments.unshift(commentToAdd);
+        // setCommentText('');
+        // setAddComment(false);
+        // const newComments = comments.map((comment) => comment);
+        // const commentToAdd = {
+        //   body: commentText,
+        //   author: user.username,
+        // };
+        // newComments.unshift(commentToAdd);
 
-        setComments(newComments);
+        // setComments(newComments);
       }}
     >
       <Form.Group className='ms-3'>

@@ -12,7 +12,7 @@ export const NavBar = () => {
   }, []);
   return (
     <Nav variant='tabs'>
-      <Nav.Item>
+      <Nav.Item key='home'>
         <Nav.Link>
           <Link to={`/`}>
             <div>r/home</div>
@@ -21,7 +21,7 @@ export const NavBar = () => {
       </Nav.Item>
       {topicsState.map((topic) => {
         return (
-          <Nav.Item>
+          <Nav.Item key={topic.slug}>
             <Nav.Link>
               <Link to={`/topics/${topic.slug}`}>
                 <div key={topic.slug}>r/{topic.slug}</div>

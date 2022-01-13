@@ -16,7 +16,7 @@ export const Comments = ({ id, setComments, comments }) => {
     <div>
       {comments.map((comment) => {
         return (
-          <Card className='mt-3'>
+          <Card className='mt-3' key={comment.comment_id}>
             <Card.Header>
               <Card.Text>{comment.author}</Card.Text>
             </Card.Header>
