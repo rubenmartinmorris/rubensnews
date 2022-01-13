@@ -2,3 +2,18 @@
   text-decoration: none;
   color: black;
 }
+
+.box-red {
+  border: solid red 2px;
+  background-color: rgba(255, 0, 0, 0, 0.2);
+}
+
+.box-yellow {
+  border: solid yellow 2px;
+  background-color: rgba(255, 240, 0, 0.2);
+}
+
+.box-green {
+  border: solid green 2px;
+  background-color: rgba(0, 128, 0, 0.2);
+}

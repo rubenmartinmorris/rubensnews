@@ -5,7 +5,7 @@ import { ArticleButton } from './ArticleButton';
 import { AddArticle } from './AddArticle';
 import { DeleteArticleButton } from './DeleteArticleButton';
 import { UserContext } from '../contexts/UserContext';
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import '../Loading.css';
 import { IsLoading } from './IsLoading';
 export const DisplayArticles = () => {
@@ -16,6 +16,16 @@ export const DisplayArticles = () => {
   const [articles, setArticles] = useState([]);
   const [sort, setSort] = useState(['votes', 'asc']);
   const [toggleNewArticle, setToggleNewArticle] = useState(false);
+  const [upVotedArticles, setUpVotedArticles] = useState([]);
+
+  const isLiked = (id) => {
+    if (upVotedArticles.includes(id)) {
+      console.log('it has already been upvoted');
+    } else {
+      setUpVotedArticles([2]);
+      console.log(upVotedArticles);
+    }
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -89,13 +99,15 @@ export const DisplayArticles = () => {
           <Card className='mt-2' key={article.article_id}>
             <Card.Header>
               <Link className='Link' to={`/articles/${article.article_id}`}>
+                {article.article_id}
                 <Card.Title>{article.title}</Card.Title>
                 <Card.Text>
                   By: {article.author} At:{article.created_at}
                 </Card.Text>
               </Link>
             </Card.Header>
-            <Card.Body>
+            {/* bg-danger */}
+            <Card.Body className={upVotedArticles[0]}>
               <Link className='Link' to={`/articles/${article.article_id}`}>
                 <div className='article-topic'>Topic: {article.topic}</div>
                 <Card.Text className='article-body'>
@@ -103,7 +115,10 @@ export const DisplayArticles = () => {
                 </Card.Text>
               </Link>
 
-              <ArticleButton article={article}></ArticleButton>
+              <ArticleButton
+                article={article}
+                id={article.article_id}
+              ></ArticleButton>
               <Link to={`/articles/${article.article_id}`}>
                 <Button className='mt-3 ms-3'>
                   View / Add Comments({article.comment_count})

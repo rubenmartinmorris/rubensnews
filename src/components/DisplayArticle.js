@@ -45,7 +45,10 @@ export const DisplayArticle = () => {
             <div>{article.body}</div>
           </Card.Text>
           <div key={article.article_id}>
-            <ArticleButton article={article}></ArticleButton>
+            <ArticleButton
+              article={article}
+              id={article.article_id}
+            ></ArticleButton>
           </div>
         </Card.Body>
       </Card>
