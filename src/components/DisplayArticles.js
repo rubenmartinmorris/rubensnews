@@ -6,7 +6,7 @@ import { AddArticle } from './AddArticle';
 import { DeleteArticleButton } from './DeleteArticleButton';
 import { UserContext } from '../contexts/UserContext';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-
+import '../Loading.css';
 export const DisplayArticles = () => {
   const { user } = useContext(UserContext);
 
@@ -79,6 +79,12 @@ export const DisplayArticles = () => {
         </>
       ) : null}
       <div className='create-article'></div>
+      <Card className='mt-2'>
+        <Card.Body>
+          <div class='lds-dual-ring'></div>
+          <Card.Title>This is a loading page</Card.Title>
+        </Card.Body>
+      </Card>
       {articles.map((article) => {
         return (
           <Card className='mt-2'>
