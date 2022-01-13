@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { getUsers } from '../utils/api';
 import { UserContext } from '../contexts/UserContext';
-import { Form } from 'react-bootstrap';
+import { Container, Form } from 'react-bootstrap';
 
 export const Header = () => {
   const [users, setUsers] = useState([]);
@@ -17,9 +17,11 @@ export const Header = () => {
 
   return (
     <>
-      <Link to='/'>
-        <img src='/logo.png' alt='reddit clone logo' />
-      </Link>
+      <Container className='d-flex justify-content-center pb-2'>
+        <Link to='/'>
+          <img src='/logo.png' alt='reddit clone logo' />
+        </Link>
+      </Container>
       <Form action=''>
         <Form.Control
           type='text'

@@ -2,15 +2,3 @@
   text-decoration: none;
   color: black;
 }
-#btn {
-  /* margin-left: 30px; */
-}
-
-.comment {
-  border: solid rgba(255, 0, 0) 1px;
-  background-color: rgba(255, 0, 0, 0.2);
-}
-.create-article {
-  border: solid rgba(0, 255, 0) 1px;
-  background-color: rgba(0, 255, 0, 0.2);
-}

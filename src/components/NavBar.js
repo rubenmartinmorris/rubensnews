@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import { getTopics } from '../utils/api';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Nav, Row, Col } from 'react-bootstrap';
 
 export const NavBar = () => {
   const [topicsState, setTopicsState] = useState([]);
@@ -11,21 +11,19 @@ export const NavBar = () => {
     });
   }, []);
   return (
-    <Container>
-      <Row>
-        <h2>Trending:</h2>
-      </Row>
-      <Row>
-        {topicsState.map((topic) => {
-          return (
-            <Col>
-              <Link to={`topics/${topic.slug}`}>
-                <div key={topic.slug}>{topic.slug}</div>
-              </Link>
-            </Col>
-          );
-        })}
-      </Row>
-    </Container>
+    <Nav variant='tabs'>
+      <Nav.Item>
+        <Nav.Link disabled>r/Topic:</Nav.Link>
+      </Nav.Item>
+      {topicsState.map((topic) => {
+        return (
+          <Nav.Item>
+            <Nav.Link href={`/topics/${topic.slug}`}>
+              <div key={topic.slug}>{topic.slug}</div>
+            </Nav.Link>
+          </Nav.Item>
+        );
+      })}
+    </Nav>
   );
 };
