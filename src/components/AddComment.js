@@ -28,16 +28,17 @@ export const AddComment = ({ id, setAddComment, comments, setComments }) => {
 
           setComments(newComments);
         });
-        // setCommentText('');
-        // setAddComment(false);
-        // const newComments = comments.map((comment) => comment);
-        // const commentToAdd = {
-        //   body: commentText,
-        //   author: user.username,
-        // };
-        // newComments.unshift(commentToAdd);
+        setCommentText('');
+        setAddComment(false);
+        const newComments = comments.map((comment) => comment);
+        const commentToAdd = {
+          body: commentText,
+          author: user.username,
+          votes: 0,
+        };
+        newComments.unshift(commentToAdd);
 
-        // setComments(newComments);
+        setComments(newComments);
       }}
     >
       <Form.Group className='ms-3'>

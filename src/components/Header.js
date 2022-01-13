@@ -40,7 +40,11 @@ export const Header = () => {
           }}
         >
           {users.map((user) => {
-            return <option value={user.username}>{user.username}</option>;
+            return (
+              <option value={user.username} key={user.username}>
+                {user.username}
+              </option>
+            );
           })}
         </Form.Select>
         <Form.Label htmlFor=''>

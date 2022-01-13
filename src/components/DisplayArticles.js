@@ -86,11 +86,13 @@ export const DisplayArticles = () => {
       {isLoading && <IsLoading />}
       {articles.map((article) => {
         return (
-          <Card className='mt-2'>
+          <Card className='mt-2' key={article.article_id}>
             <Card.Header>
               <Link className='Link' to={`/articles/${article.article_id}`}>
                 <Card.Title>{article.title}</Card.Title>
-                <Card.Text>By: {article.author}</Card.Text>
+                <Card.Text>
+                  By: {article.author} At:{article.created_at}
+                </Card.Text>
               </Link>
             </Card.Header>
             <Card.Body>
@@ -103,7 +105,9 @@ export const DisplayArticles = () => {
 
               <ArticleButton article={article}></ArticleButton>
               <Link to={`/articles/${article.article_id}`}>
-                <Button className='mt-3 ms-3'>View Comments</Button>
+                <Button className='mt-3 ms-3'>
+                  View / Add Comments({article.comment_count})
+                </Button>
               </Link>
               {user.username === article.author ? (
                 <DeleteArticleButton
