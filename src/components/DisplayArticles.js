@@ -7,7 +7,9 @@ import { DeleteArticleButton } from './DeleteArticleButton';
 import { UserContext } from '../contexts/UserContext';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import '../Loading.css';
+import { IsLoading } from './IsLoading';
 export const DisplayArticles = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(UserContext);
 
   const paramsTopic = useParams().topic;
@@ -16,8 +18,10 @@ export const DisplayArticles = () => {
   const [toggleNewArticle, setToggleNewArticle] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     getArticles(paramsTopic, sort).then(({ articles }) => {
       setArticles(articles);
+      setIsLoading(false);
     });
   }, [paramsTopic, sort]);
 
@@ -79,12 +83,7 @@ export const DisplayArticles = () => {
         </>
       ) : null}
       <div className='create-article'></div>
-      <Card className='mt-2'>
-        <Card.Body>
-          <div class='lds-dual-ring'></div>
-          <Card.Title>This is a loading page</Card.Title>
-        </Card.Body>
-      </Card>
+      {isLoading && <IsLoading />}
       {articles.map((article) => {
         return (
           <Card className='mt-2'>
@@ -103,7 +102,9 @@ export const DisplayArticles = () => {
               </Link>
 
               <ArticleButton article={article}></ArticleButton>
-              <Button className='mt-3 ms-3'>View Comments</Button>
+              <Link to={`/articles/${article.article_id}`}>
+                <Button className='mt-3 ms-3'>View Comments</Button>
+              </Link>
               {user.username === article.author ? (
                 <DeleteArticleButton
                   article={article}

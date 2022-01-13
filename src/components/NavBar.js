@@ -13,13 +13,19 @@ export const NavBar = () => {
   return (
     <Nav variant='tabs'>
       <Nav.Item>
-        <Nav.Link disabled>r/Topic:</Nav.Link>
+        <Nav.Link>
+          <Link to={`/`}>
+            <div>r/home</div>
+          </Link>
+        </Nav.Link>
       </Nav.Item>
       {topicsState.map((topic) => {
         return (
           <Nav.Item>
-            <Nav.Link href={`/topics/${topic.slug}`}>
-              <div key={topic.slug}>{topic.slug}</div>
+            <Nav.Link>
+              <Link to={`/topics/${topic.slug}`}>
+                <div key={topic.slug}>r/{topic.slug}</div>
+              </Link>
             </Nav.Link>
           </Nav.Item>
         );

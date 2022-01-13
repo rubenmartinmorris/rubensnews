@@ -5,8 +5,10 @@ import { ArticleButton } from './ArticleButton';
 import { Comments } from './Comments';
 import { AddComment } from './AddComment';
 import { Button } from 'react-bootstrap';
+import { IsLoading } from './IsLoading';
 
 export const DisplayArticle = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [comments, setComments] = useState([]);
 
   const [article, setArticle] = useState([{}]);
@@ -14,8 +16,10 @@ export const DisplayArticle = () => {
   const [addComment, setAddComment] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
+    setIsLoading(true);
     getArticle(article_id).then(({ article }) => {
       setArticle(article);
+      setIsLoading(false);
     });
   }, []);
   return (
@@ -28,6 +32,7 @@ export const DisplayArticle = () => {
       >
         Back
       </Button>
+      {isLoading && <IsLoading />}
       <div key={article.article_id}>
         <div>Id {article.article_id}</div>
         <div>Author {article.author}</div>
