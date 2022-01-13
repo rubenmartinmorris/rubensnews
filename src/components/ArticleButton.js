@@ -10,9 +10,13 @@ export const ArticleButton = ({ article, text }) => {
       <Button
         className={'mt-3'}
         onClick={(event) => {
+          console.log(article.votes, 'article.votes', like, 'like');
+
           const newLike = like + 1;
           setLike(newLike);
-          upVote(article.article_id).then(({ votes }) => {});
+          upVote(article.article_id).then(({ votes }) => {
+            setLike(newLike);
+          });
         }}
       >
         Up Vote:{like}

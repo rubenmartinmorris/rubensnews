@@ -44,27 +44,15 @@ export const DisplayArticle = () => {
           <Card.Text className='article-body'>
             <div>{article.body}</div>
           </Card.Text>
-
-          <ArticleButton article={article}></ArticleButton>
-          <Button
-            onClick={() => {
-              setAddComment(!addComment);
-            }}
-          >
-            {addComment ? 'Back' : 'Add Comment'}
-          </Button>
+          <div key={article.article_id}>
+            <ArticleButton article={article}></ArticleButton>
+          </div>
         </Card.Body>
       </Card>
       {/* Old code below this */}
       <div key={article.article_id}>
-        <div>Id {article.article_id}</div>
-        <div>Author {article.author}</div>
-        <div>Title {article.title}</div>
-        <div>Body {article.body}</div>
-        <div>Votes {article.votes}</div>
-        <div>Created at {article.created_at}</div>
-        <ArticleButton article={article}></ArticleButton>
         <Button
+          className='ms-3'
           onClick={() => {
             setAddComment(!addComment);
           }}
@@ -80,7 +68,7 @@ export const DisplayArticle = () => {
           setComments={setComments}
         />
       )}
-
+      {/* <h1>Comments Start Here</h1> */}
       <Comments id={article_id} comments={comments} setComments={setComments} />
       <Button
         className='mt-3 ms-3'

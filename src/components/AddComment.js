@@ -36,8 +36,9 @@ export const AddComment = ({ id, setAddComment, comments, setComments }) => {
         setComments(newComments);
       }}
     >
-      <Form.Group>
+      <Form.Group className='ms-3'>
         <Form.Control
+          className='my-3'
           autoFocus
           type='text'
           name='comment'
