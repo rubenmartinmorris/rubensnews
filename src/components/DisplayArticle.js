@@ -4,7 +4,7 @@ import { getArticle } from '../utils/api';
 import { ArticleButton } from './ArticleButton';
 import { Comments } from './Comments';
 import { AddComment } from './AddComment';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { IsLoading } from './IsLoading';
 
 export const DisplayArticle = () => {
@@ -33,6 +33,29 @@ export const DisplayArticle = () => {
         Back
       </Button>
       {isLoading && <IsLoading />}
+      {/* Old code above this */}
+      <Card className='mt-2'>
+        <Card.Header>
+          <Card.Title>{article.title}</Card.Title>
+          <Card.Text>By: {article.author}</Card.Text>
+        </Card.Header>
+        <Card.Body>
+          <div className='article-topic'>Topic: {article.topic}</div>
+          <Card.Text className='article-body'>
+            <div>{article.body}</div>
+          </Card.Text>
+
+          <ArticleButton article={article}></ArticleButton>
+          <Button
+            onClick={() => {
+              setAddComment(!addComment);
+            }}
+          >
+            {addComment ? 'Back' : 'Add Comment'}
+          </Button>
+        </Card.Body>
+      </Card>
+      {/* Old code below this */}
       <div key={article.article_id}>
         <div>Id {article.article_id}</div>
         <div>Author {article.author}</div>
