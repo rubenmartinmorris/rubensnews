@@ -5,12 +5,18 @@ import { getUsers } from '../utils/api';
 import { UserContext } from '../contexts/UserContext';
 import { Container, Form, Stack, Image } from 'react-bootstrap';
 
+export const myStorage = window.localStorage;
 export const Header = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     getUsers().then((users) => {
+      users.forEach((user) => {
+        user.likedComments = [];
+      });
       setUsers(users);
       setUser(users[0]);
+      myStorage.setItem('usersInStorage', JSON.stringify(users));
+      console.log(myStorage, users);
     });
   }, []);
   const { user, setUser } = useContext(UserContext);
@@ -34,6 +40,7 @@ export const Header = () => {
 
         <Form action='' className='mb-auto my-3'>
           <Form.Select
+            disabled
             name='users'
             id='users'
             onChange={(event) => {
