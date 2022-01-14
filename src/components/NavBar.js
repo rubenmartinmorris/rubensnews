@@ -1,20 +1,16 @@
 import { React, useEffect, useState } from 'react';
 import { getTopics } from '../utils/api';
 import { Link } from 'react-router-dom';
-import { Nav } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Nav, Row, Col } from 'react-bootstrap';
 
 export const NavBar = () => {
-  const navigate = useNavigate();
   const [topicsState, setTopicsState] = useState([]);
   useEffect(() => {
     getTopics()
       .then(({ topics }) => {
         setTopicsState(topics);
       })
-      .catch((err) => {
-        navigate('/server404');
-      });
+      .catch((err) => {});
   }, []);
   return (
     <Nav variant='tabs'>
