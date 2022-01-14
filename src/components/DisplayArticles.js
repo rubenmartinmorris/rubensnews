@@ -93,7 +93,6 @@ export const DisplayArticles = () => {
           />
         </>
       ) : null}
-      <div className='create-article'></div>
       {isLoading && <IsLoading />}
       {articles.map((article) => {
         return (
@@ -114,10 +113,10 @@ export const DisplayArticles = () => {
             {/* bg-danger */}
             <Card.Body className={upVotedArticles[0]}>
               <Link className='Link' to={`/articles/${article.article_id}`}>
-                <div className='article-topic'>Topic: {article.topic}</div>
-                <Card.Text className='article-body'>
-                  <div>{article.body}</div>
+                <Card.Text className='article-topic'>
+                  Topic: {article.topic}
                 </Card.Text>
+                <Card.Text className='article-body'>{article.body}</Card.Text>
               </Link>
 
               <ArticleButton

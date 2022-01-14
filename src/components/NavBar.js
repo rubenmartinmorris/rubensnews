@@ -6,27 +6,25 @@ import { Nav, Row, Col } from 'react-bootstrap';
 export const NavBar = () => {
   const [topicsState, setTopicsState] = useState([]);
   useEffect(() => {
-    getTopics().then(({ topics }) => {
-      setTopicsState(topics);
-    });
+    getTopics()
+      .then(({ topics }) => {
+        setTopicsState(topics);
+      })
+      .catch((err) => {});
   }, []);
   return (
     <Nav variant='tabs'>
       <Nav.Item key='home'>
-        <Nav.Link>
-          <Link to={`/`}>
-            <div>r/home</div>
-          </Link>
-        </Nav.Link>
+        <Link to={`/`}>
+          <span>r/home</span>
+        </Link>
       </Nav.Item>
       {topicsState.map((topic) => {
         return (
           <Nav.Item key={topic.slug}>
-            <Nav.Link>
-              <Link to={`/topics/${topic.slug}`}>
-                <div key={topic.slug}>r/{topic.slug}</div>
-              </Link>
-            </Nav.Link>
+            <Link to={`/topics/${topic.slug}`}>
+              <span key={topic.slug}>r/{topic.slug}</span>
+            </Link>
           </Nav.Item>
         );
       })}

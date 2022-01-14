@@ -40,16 +40,16 @@ export const DisplayArticle = () => {
           <Card.Text>By: {article.author}</Card.Text>
         </Card.Header>
         <Card.Body>
-          <div className='article-topic'>Topic: {article.topic}</div>
-          <Card.Text className='article-body'>
-            <div>{article.body}</div>
+          <Card.Text className='article-topic'>
+            Topic: {article.topic}
           </Card.Text>
-          <div key={article.article_id}>
+          <Card.Text className='article-body'>{article.body}</Card.Text>
+          <p key={article.article_id}>
             <ArticleButton
               article={article}
               id={article.article_id}
             ></ArticleButton>
-          </div>
+          </p>
         </Card.Body>
       </Card>
       {/* Old code below this */}
