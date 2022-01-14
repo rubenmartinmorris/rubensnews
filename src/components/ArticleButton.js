@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import { upVote } from '../utils/api';
 import { Button } from 'react-bootstrap';
 import { UserContext } from '../contexts/UserContext';
+import { myStorage } from './Header';
 
 export const ArticleButton = ({ article, text, id }) => {
   const { user } = useContext(UserContext);
@@ -13,22 +14,41 @@ export const ArticleButton = ({ article, text, id }) => {
       <Button
         className={'mt-3 bg-success'}
         onClick={(event) => {
-          if (user.hasOwnProperty('upvote')) {
-            console.log('has upvote');
-            if (user.upvote.includes(id)) {
-              console.log('already upvoted');
+          const newUsers = JSON.parse(myStorage.usersInStorage);
+
+          newUsers.forEach((storedUser) => {
+            console.log('looping');
+
+            if (storedUser.username === user.username) {
+              if (storedUser.likedComments.includes(id)) {
+                console.log('remove');
+                console.log(storedUser.likedComments);
+
+                storedUser.likedComments = storedUser.likedComments.filter(
+                  (item) => item !== id
+                );
+                const newUsersString = JSON.stringify(newUsers);
+                myStorage.setItem('usersInStorage', newUsersString);
+                console.log(myStorage, 'remove');
+              } else {
+                //console.log(storedUser);
+                storedUser.likedComments.push(id);
+
+                const newUsersString = JSON.stringify(newUsers);
+                myStorage.setItem('usersInStorage', newUsersString);
+                console.log(myStorage, 'add');
+              }
+
+              // if (storedUser.likedComments.includes(id)) {
+              //   console.log('already liked');
+              // } else {
+              //   console.log('added to stored user');
+              //   window.localstorage.setItem('usersInStorage', 'asdfasdf');
+              //   console.log(window.localStorage, 'window');
+              // }
             }
-          } else {
-            const updatedUser = Object.assign({}, user);
-
-            updatedUser.upvote = [id];
-            console.log(id, updatedUser, '<---updatedUser');
-          }
-          //setUser(updatedUser);
-
-          console.log(user);
-
-          console.log(article.votes, 'article.votes', like, 'like');
+          });
+          // console.log(myStorage, 'myStorage', user);
 
           const newLike = like + 1;
           setLike(newLike);

@@ -20,14 +20,14 @@ export const DisplayArticles = () => {
   const [upVotedArticles, setUpVotedArticles] = useState([]);
   const navigate = useNavigate();
 
-  const isLiked = (id) => {
-    if (upVotedArticles.includes(id)) {
-      console.log('it has already been upvoted');
-    } else {
-      setUpVotedArticles([2]);
-      console.log(upVotedArticles);
-    }
-  };
+  // const isLiked = (id) => {
+  //   if (upVotedArticles.includes(id)) {
+  //     console.log('it has already been upvoted');
+  //   } else {
+  //     setUpVotedArticles([2]);
+  //     console.log(upVotedArticles);
+  //   }
+  // };
 
   useEffect(() => {
     setIsLoading(true);
