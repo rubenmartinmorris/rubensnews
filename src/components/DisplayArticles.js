@@ -9,6 +9,7 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import dayjs from 'dayjs';
 import '../Loading.css';
 import { IsLoading } from './IsLoading';
+
 export const DisplayArticles = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(UserContext);
@@ -18,6 +19,7 @@ export const DisplayArticles = () => {
   const [sort, setSort] = useState(['votes', 'asc']);
   const [toggleNewArticle, setToggleNewArticle] = useState(false);
   const [upVotedArticles, setUpVotedArticles] = useState([]);
+
   const navigate = useNavigate();
 
   // const isLiked = (id) => {
@@ -28,6 +30,12 @@ export const DisplayArticles = () => {
   //     console.log(upVotedArticles);
   //   }
   // };
+  // .then((users) => {
+  //     users.forEach((user) => {
+  //       user.likedComments = [];
+  //     });
+  //     setUsers(users);
+  // setUser(users[0]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -102,6 +110,11 @@ export const DisplayArticles = () => {
       {articles.map((article) => {
         return (
           <Card className='mt-2' key={article.article_id}>
+            {user.likedComments ? null : user.likedComments.includes(
+                article.article_id
+              ) ? (
+              <h1>It is liked</h1>
+            ) : null}
             <Card.Header>
               <Link className='Link' to={`/articles/${article.article_id}`}>
                 {article.article_id}

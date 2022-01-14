@@ -6,13 +6,16 @@ import { UserContext } from '../contexts/UserContext';
 import { myStorage } from './Header';
 
 export const ArticleButton = ({ article, text, id }) => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const [like, setLike] = useState(article.votes);
+
   return (
     <>
       <Button
-        className={'mt-3 bg-success'}
+        className={
+          user.likedComments.includes(id) ? 'mt-3 bg-success' : 'mt-3 bg-danger'
+        }
         onClick={(event) => {
           const newUsers = JSON.parse(myStorage.usersInStorage);
 
@@ -21,22 +24,26 @@ export const ArticleButton = ({ article, text, id }) => {
 
             if (storedUser.username === user.username) {
               if (storedUser.likedComments.includes(id)) {
-                console.log('remove');
-                console.log(storedUser.likedComments);
+                //console.log('remove');
+                //console.log(storedUser.likedComments);
 
                 storedUser.likedComments = storedUser.likedComments.filter(
                   (item) => item !== id
                 );
-                const newUsersString = JSON.stringify(newUsers);
-                myStorage.setItem('usersInStorage', newUsersString);
-                console.log(myStorage, 'remove');
-              } else {
-                //console.log(storedUser);
-                storedUser.likedComments.push(id);
+                setUser(storedUser);
 
                 const newUsersString = JSON.stringify(newUsers);
                 myStorage.setItem('usersInStorage', newUsersString);
-                console.log(myStorage, 'add');
+                //console.log(myStorage, 'remove');
+                console.log(user);
+              } else {
+                //console.log(storedUser);
+                storedUser.likedComments.push(id);
+                setUser(storedUser);
+                const newUsersString = JSON.stringify(newUsers);
+                myStorage.setItem('usersInStorage', newUsersString);
+                //console.log(myStorage, 'add');
+                console.log(user);
               }
 
               // if (storedUser.likedComments.includes(id)) {
