@@ -6,7 +6,7 @@ Rubensnews has articles which are divided into topics. Each article has user cur
 This is the frontend of afull stack application that uses the C.R.U.D (create,read,update,delete) principle.
 
 The deployed frontend:
-www.asdfasdfasfd
+https://adoring-mclean-c4e3ea.netlify.app
 
 The backend repo:
 https://github.com/rubenmartinmorris/be-nc-news-example
