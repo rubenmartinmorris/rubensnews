@@ -12,7 +12,7 @@ function App() {
   return (
     <UserProvider>
       <BrowserRouter>
-        <div className='App' className='justify-content-center'>
+        <div className='App justify-content-center'>
           <Container fluid='md'>
             <Header />
 

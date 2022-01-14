@@ -40,6 +40,7 @@ export const Header = () => {
 
         <Form action='' className='mb-auto my-3'>
           <Form.Select
+            disabled
             name='users'
             id='users'
             onChange={(event) => {

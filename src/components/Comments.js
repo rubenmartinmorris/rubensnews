@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { getComments, deleteComment } from '../utils/api';
 import { UserContext } from '../contexts/UserContext';
 import { CommentsButton } from './CommentsButton';
