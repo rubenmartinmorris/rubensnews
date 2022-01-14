@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { UserContext } from '../contexts/UserContext';
 
 export const ArticleButton = ({ article, text, id }) => {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   const [like, setLike] = useState(article.votes);
   return (
