@@ -3,14 +3,20 @@ import { getComments, deleteComment } from '../utils/api';
 import { UserContext } from '../contexts/UserContext';
 import { CommentsButton } from './CommentsButton';
 import { Button, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 import dayjs from 'dayjs';
 
 export const Comments = ({ id, setComments, comments }) => {
+  const navigate = useNavigate();
   useEffect(() => {
-    getComments(id).then(({ comments }) => {
-      setComments(comments);
-    });
+    getComments(id)
+      .then(({ comments }) => {
+        setComments(comments);
+      })
+      .catch(() => {
+        navigate(`/server404`);
+      });
   }, []);
   const { user } = useContext(UserContext);
 

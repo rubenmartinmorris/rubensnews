@@ -1,5 +1,5 @@
 import { React, useState, useEffect, useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getArticles } from '../utils/api';
 import { ArticleButton } from './ArticleButton';
 import { AddArticle } from './AddArticle';
@@ -18,6 +18,7 @@ export const DisplayArticles = () => {
   const [sort, setSort] = useState(['votes', 'asc']);
   const [toggleNewArticle, setToggleNewArticle] = useState(false);
   const [upVotedArticles, setUpVotedArticles] = useState([]);
+  const navigate = useNavigate();
 
   const isLiked = (id) => {
     if (upVotedArticles.includes(id)) {
@@ -30,10 +31,14 @@ export const DisplayArticles = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(paramsTopic, sort).then(({ articles }) => {
-      setArticles(articles);
-      setIsLoading(false);
-    });
+    getArticles(paramsTopic, sort)
+      .then(({ articles }) => {
+        setArticles(articles);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        navigate('/server404');
+      });
   }, [paramsTopic, sort]);
 
   return (
