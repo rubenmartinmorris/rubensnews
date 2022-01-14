@@ -1,5 +1,5 @@
 import { React, useState, useEffect, useContext } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getArticles } from '../utils/api';
 import { ArticleButton } from './ArticleButton';
 import { AddArticle } from './AddArticle';
@@ -9,6 +9,7 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import dayjs from 'dayjs';
 import '../Loading.css';
 import { IsLoading } from './IsLoading';
+
 export const DisplayArticles = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(UserContext);
@@ -18,27 +19,36 @@ export const DisplayArticles = () => {
   const [sort, setSort] = useState(['votes', 'asc']);
   const [toggleNewArticle, setToggleNewArticle] = useState(false);
   const [upVotedArticles, setUpVotedArticles] = useState([]);
-  const navigate = useNavigate();
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 23070112abc92f087acdc8ed9f8575218ed89a5f
 
-  const isLiked = (id) => {
-    if (upVotedArticles.includes(id)) {
-      console.log('it has already been upvoted');
-    } else {
-      setUpVotedArticles([2]);
-      console.log(upVotedArticles);
-    }
-  };
+  const navigate = useNavigate();
+=======
+>>>>>>> parent of d729acf... server404 complete
+
+  // const isLiked = (id) => {
+  //   if (upVotedArticles.includes(id)) {
+  //     console.log('it has already been upvoted');
+  //   } else {
+  //     setUpVotedArticles([2]);
+  //     console.log(upVotedArticles);
+  //   }
+  // };
+  // .then((users) => {
+  //     users.forEach((user) => {
+  //       user.likedComments = [];
+  //     });
+  //     setUsers(users);
+  // setUser(users[0]);
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles(paramsTopic, sort)
-      .then(({ articles }) => {
-        setArticles(articles);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        navigate('/server404');
-      });
+    getArticles(paramsTopic, sort).then(({ articles }) => {
+      setArticles(articles);
+      setIsLoading(false);
+    });
   }, [paramsTopic, sort]);
 
   return (
@@ -102,6 +112,11 @@ export const DisplayArticles = () => {
       {articles.map((article) => {
         return (
           <Card className='mt-2' key={article.article_id}>
+            {user.likedComments ? null : user.likedComments.includes(
+                article.article_id
+              ) ? (
+              <h1>It is liked</h1>
+            ) : null}
             <Card.Header>
               <Link className='Link' to={`/articles/${article.article_id}`}>
                 {article.article_id}

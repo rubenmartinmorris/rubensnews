@@ -28,6 +28,7 @@ export const AddArticle = ({ articles, setArticles, setToggleNewArticle }) => {
 
           console.log(newArticles, 'newArticles');
 
+          setArticles(newArticles);
           setTitleValues('');
           setBodyValues('');
           setToggleNewArticle(false);
