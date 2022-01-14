@@ -20,6 +20,9 @@ export const DisplayArticles = () => {
   const [toggleNewArticle, setToggleNewArticle] = useState(false);
   const [upVotedArticles, setUpVotedArticles] = useState([]);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 23070112abc92f087acdc8ed9f8575218ed89a5f
 
   const navigate = useNavigate();
 =======
