@@ -27,7 +27,8 @@ export const Header = () => {
             type='text'
             name='search'
             id='search'
-            placeholder='search by Topics or Author'
+            placeholder='search by Topics or Author coming soon....'
+            disabled
           />
         </Form>
 

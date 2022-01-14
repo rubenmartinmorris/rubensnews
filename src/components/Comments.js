@@ -4,6 +4,8 @@ import { UserContext } from '../contexts/UserContext';
 import { CommentsButton } from './CommentsButton';
 import { Button, Card } from 'react-bootstrap';
 
+import dayjs from 'dayjs';
+
 export const Comments = ({ id, setComments, comments }) => {
   useEffect(() => {
     getComments(id).then(({ comments }) => {
@@ -19,13 +21,17 @@ export const Comments = ({ id, setComments, comments }) => {
           <Card className='mt-3' key={comment.comment_id}>
             <Card.Header>
               <Card.Text>{comment.author}</Card.Text>
+              <strong>r/</strong>
+              {comment.author}
+              <strong className='ms-3'>Posted At: </strong>
+              {dayjs(comment.created_at).format('h:mm:ss A DD.MM.YYYY')}
             </Card.Header>
             <Card.Body className='bg-secondary'>
               <Card.Text> {comment.body}</Card.Text>
               <CommentsButton comment={comment} />
               {comment.author === user.username ? (
                 <Button
-                  className='ms-3'
+                  className='ms-3 bg-danger'
                   onClick={(event) => {
                     deleteComment(comment.comment_id);
                     let newComments = comments.map((comment) => comment);
@@ -36,7 +42,7 @@ export const Comments = ({ id, setComments, comments }) => {
                     setComments(newComments);
                   }}
                 >
-                  Delete My Comment
+                  Delete my comment
                 </Button>
               ) : null}
             </Card.Body>

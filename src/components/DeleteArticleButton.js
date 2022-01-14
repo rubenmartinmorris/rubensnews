@@ -4,7 +4,7 @@ export const DeleteArticleButton = ({ article, articles, setArticles }) => {
   return (
     <Button
       id='btn'
-      className='ms-3 mt-3'
+      className=' mt-3 bg-danger'
       onClick={() => {
         deleteArticleButton(article.article_id);
         const newArticles = articles.filter((filterdArticle) => {
@@ -15,7 +15,7 @@ export const DeleteArticleButton = ({ article, articles, setArticles }) => {
         setArticles(newArticles);
       }}
     >
-      Delete my Article
+      Delete my article
     </Button>
   );
 };

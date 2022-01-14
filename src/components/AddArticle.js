@@ -5,8 +5,8 @@ import { Button, Form } from 'react-bootstrap';
 export const AddArticle = ({ articles, setArticles, setToggleNewArticle }) => {
   const { user } = useContext(UserContext);
 
-  const [titleValues, setTitleValues] = useState('Team');
-  const [bodyValues, setBodyValues] = useState('Teams are the best');
+  const [titleValues, setTitleValues] = useState('');
+  const [bodyValues, setBodyValues] = useState('');
 
   return (
     <Form
@@ -46,6 +46,7 @@ export const AddArticle = ({ articles, setArticles, setToggleNewArticle }) => {
           type='text'
           name='title'
           id='title'
+          placeholder='Your title here'
         />
       </Form.Group>
       <Form.Group>
@@ -59,6 +60,7 @@ export const AddArticle = ({ articles, setArticles, setToggleNewArticle }) => {
           type='text'
           name='body'
           id='body'
+          placeholder='Your article here'
         />
       </Form.Group>
       <Form.Group>
@@ -69,7 +71,7 @@ export const AddArticle = ({ articles, setArticles, setToggleNewArticle }) => {
           <option value='cooking'>cooking</option>
         </Form.Select>
       </Form.Group>
-      <Button type='submit' className='m-3'>
+      <Button type='submit' className='my-3 bg-success'>
         Post Now!
       </Button>
     </Form>

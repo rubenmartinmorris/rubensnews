@@ -11,7 +11,7 @@ export const ArticleButton = ({ article, text, id }) => {
   return (
     <>
       <Button
-        className={'mt-3'}
+        className={'mt-3 bg-success'}
         onClick={(event) => {
           if (user.hasOwnProperty('upvote')) {
             console.log('has upvote');
@@ -37,7 +37,7 @@ export const ArticleButton = ({ article, text, id }) => {
           });
         }}
       >
-        Up Vote:{like}
+        Up vote:{like}
       </Button>
     </>
   );

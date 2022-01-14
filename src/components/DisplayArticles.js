@@ -6,6 +6,7 @@ import { AddArticle } from './AddArticle';
 import { DeleteArticleButton } from './DeleteArticleButton';
 import { UserContext } from '../contexts/UserContext';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
+import dayjs from 'dayjs';
 import '../Loading.css';
 import { IsLoading } from './IsLoading';
 export const DisplayArticles = () => {
@@ -76,12 +77,12 @@ export const DisplayArticles = () => {
       </Form>
 
       <Button
-        className='m-3'
+        className='my-3 bg-secondary'
         onClick={() => {
           setToggleNewArticle(!toggleNewArticle);
         }}
       >
-        {!toggleNewArticle ? 'Create Article ' : 'Forget it!'}
+        {!toggleNewArticle ? 'Create article ' : 'Forget it!'}
       </Button>
       {toggleNewArticle ? (
         <>
@@ -102,7 +103,11 @@ export const DisplayArticles = () => {
                 {article.article_id}
                 <Card.Title>{article.title}</Card.Title>
                 <Card.Text>
-                  By: {article.author} At:{article.created_at}
+                  {/* Date dayjs(article.created_at).format('DD/MM/YYYY') */}
+                  <strong>r/</strong>
+                  {article.author}
+                  <strong className='ms-3'>Posted At: </strong>
+                  {dayjs(article.created_at).format('h:mm:ss A DD.MM.YYYY')}
                 </Card.Text>
               </Link>
             </Card.Header>
@@ -120,8 +125,8 @@ export const DisplayArticles = () => {
                 id={article.article_id}
               ></ArticleButton>
               <Link to={`/articles/${article.article_id}`}>
-                <Button className='mt-3 ms-3'>
-                  View / Add Comments({article.comment_count})
+                <Button className='mt-3 mx-3 '>
+                  View / Add comments({article.comment_count})
                 </Button>
               </Link>
               {user.username === article.author ? (
